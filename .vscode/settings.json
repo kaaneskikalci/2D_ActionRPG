@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "ana.sln"
+    "dotnet.defaultSolution": "Csharp-Full-Course-for-free_BroCode.sln"
 }
