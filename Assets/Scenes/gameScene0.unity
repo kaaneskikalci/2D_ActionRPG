@@ -55558,6 +55558,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2472412895152755412, guid: 543a80f061df522439f476d767e70618, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472412895152755412, guid: 543a80f061df522439f476d767e70618, type: 3}
       propertyPath: wallCheck
       value: 
       objectReference: {fileID: 1174500336}

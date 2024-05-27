@@ -14,5 +14,5 @@ internal class AnimationStrings : MonoBehaviour
         internal static string isOnWall = "isOnWall";
         internal static string isOnCeiling = "isOnWall";
 
-    
+internal static string attack= "attack";
 }

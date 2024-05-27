@@ -165,4 +165,15 @@ rb.velocity=new Vector2(rb.velocity.x,jumpImpulse);
 }
 
 
+public void OnAttack(InputAction.CallbackContext context)
+{
+if (context.started)
+{
+    animator.SetTrigger(AnimationStrings.attack);
+} 
+
+}
+
+
+
 }
