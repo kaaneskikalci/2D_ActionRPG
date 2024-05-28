@@ -159,7 +159,7 @@ public void OnJump (InputAction.CallbackContext context)
 {
 if(context.started&& touchingDirections.IsGrounded)
 {
-animator.SetTrigger(AnimationStrings.jump);
+animator.SetTrigger(AnimationStrings.jumpTrigger);
 rb.velocity=new Vector2(rb.velocity.x,jumpImpulse);
 }
 }
@@ -169,7 +169,7 @@ public void OnAttack(InputAction.CallbackContext context)
 {
 if (context.started)
 {
-    animator.SetTrigger(AnimationStrings.attack);
+    animator.SetTrigger(AnimationStrings.attackTrigger);
 } 
 
 }
