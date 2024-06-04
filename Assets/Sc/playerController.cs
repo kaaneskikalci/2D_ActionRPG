@@ -41,27 +41,38 @@ private void Update ()
 
 
 
-public float CurrentMoveSpeed{get
-{if(touchingDirections.IsGrounded)
+public float CurrentMoveSpeed
+{get
 {
-    
-}
-    if (IsMoving && !touchingDirections.IsOnWall)
+    if (CanMove)
     {
-        if(touchingDirections.IsGrounded )
+        if(touchingDirections.IsGrounded)
         {
-        if(IsRun){
+    
+        }
+        if (IsMoving && !touchingDirections.IsOnWall)
+        {
+            if(touchingDirections.IsGrounded )
+            {
+                if(IsRun){
 
-            return runSpeed;
+                    return runSpeed;
+                }else{
+                    return walkSpeed;
+                }
+            }
+            else{return airWalkSpeed;}
         }else{
-            return walkSpeed;
-        }
-        }
-        else{return airWalkSpeed;}
-    }else{
 
+            return 0;
+        }
+    }
+    else
+    {//no movement
         return 0;
     }
+
+
 }
 }
 Animator animator;
@@ -157,7 +168,7 @@ transform.localScale*=new Vector2(-1,1);
 public void OnJump (InputAction.CallbackContext context)
 
 {
-if(context.started&& touchingDirections.IsGrounded)
+if(context.started&& touchingDirections.IsGrounded&&CanMove)
 {
 animator.SetTrigger(AnimationStrings.jumpTrigger);
 rb.velocity=new Vector2(rb.velocity.x,jumpImpulse);
@@ -174,6 +185,10 @@ if (context.started)
 
 }
 
+public bool CanMove
+{
+    get { return animator.GetBool(AnimationStrings.canMove); }
+}
 
 
 }
