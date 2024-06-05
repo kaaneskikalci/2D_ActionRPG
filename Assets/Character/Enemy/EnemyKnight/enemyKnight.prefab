@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 8092668919778196639}
   - component: {fileID: 847603948619208310}
   - component: {fileID: 7947439490695920905}
-  m_Layer: 0
+  - component: {fileID: 6642382597562425502}
+  - component: {fileID: 8251005758115622144}
+  m_Layer: 8
   m_Name: enemyKnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,3 +163,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bf7b1cdce04b3441a12dcc2990ae792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSpeed: 3
+--- !u!114 &6642382597562425502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8038945516513456381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7664de1b88c74d548b3aa5b28ec86d16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 64
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  groundDistance: 0.05
+  wallDistance: 0.2
+  ceilingDistance: 0.05
+  _isGrounded: 0
+  _isOnWall: 0
+  _isOnCeiling: 0
+--- !u!95 &8251005758115622144
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8038945516513456381}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f16e7aa105ff7814597ec02cff859d83, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

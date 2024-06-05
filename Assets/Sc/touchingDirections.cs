@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class touchingDirections : MonoBehaviour
+public class  touchingDirections : MonoBehaviour
 {
     public ContactFilter2D castFilter;
     public float groundDistance= 0.05f;
