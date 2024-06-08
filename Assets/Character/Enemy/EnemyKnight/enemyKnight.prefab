@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7947439490695920905}
   - component: {fileID: 6642382597562425502}
   - component: {fileID: 8251005758115622144}
+  - component: {fileID: 926540176455784350}
   m_Layer: 8
   m_Name: enemyKnight
   m_TagString: Untagged
@@ -221,6 +222,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &926540176455784350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8038945516513456381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7f4045e5ef5de4899942c90e023162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
 --- !u!1 &8335206206203489669
 GameObject:
   m_ObjectHideFlags: 0
