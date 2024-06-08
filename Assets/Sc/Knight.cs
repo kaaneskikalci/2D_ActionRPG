@@ -7,8 +7,11 @@ public class Knight : MonoBehaviour
 {
     public float walkSpeed = 3F;
 
+    public DetectionZone attacackZone;
     private Rigidbody2D rb;
     touchingDirections touchingDirections;
+     Animator animator;
+     
     public  enum WalkableDirection
     {
         Right,Left
@@ -16,9 +19,9 @@ public class Knight : MonoBehaviour
 
     private WalkableDirection _walkDirection;
 
-    private Vector2 walkDirectionVector;    
+    private Vector2 walkDirectionVector;
 
-    
+    public float walkStopRate = 0.6f;    
     public WalkableDirection WalkDirection
     {
         get { return _walkDirection; }
@@ -45,6 +48,30 @@ public class Knight : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         touchingDirections = GetComponent<touchingDirections>();
 
+        animator = GetComponent<Animator>();
+    }
+    void Update()
+    {
+        HasTarget = attacackZone.detectedColliders.Count > 0;
+    }
+
+    public bool _hasTarget = false;
+    public bool HasTarget
+    {
+        get { return _hasTarget;}
+        private set
+        {
+            _hasTarget = value;
+            animator.SetBool(AnimationStrings.hasTarget,value);
+        }
+    }
+
+    public bool CanMove
+    {
+        get
+        {
+            return animator.GetBool(AnimationStrings.canMove);
+        }
     }
 
     private void FixedUpdate()
@@ -53,7 +80,12 @@ public class Knight : MonoBehaviour
         {
             FlipDirection();
         }
-        rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+
+        if (CanMove)
+
+            rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+        else
+            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x,0,walkStopRate), rb.velocity.y);
     }
 
     private void FlipDirection()
@@ -73,16 +105,5 @@ public class Knight : MonoBehaviour
         }
             
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
