@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(Rigidbody2D),typeof(touchingDirections))]
+[RequireComponent(typeof(Rigidbody2D),typeof(touchingDirections),typeof(Damagable))]
 public class Knight : MonoBehaviour
 {
     public float walkSpeed = 3F;
@@ -11,7 +11,7 @@ public class Knight : MonoBehaviour
     private Rigidbody2D rb;
     touchingDirections touchingDirections;
      Animator animator;
-     
+      Damagable damageable;
     public  enum WalkableDirection
     {
         Right,Left
@@ -19,7 +19,7 @@ public class Knight : MonoBehaviour
 
     private WalkableDirection _walkDirection;
 
-    private Vector2 walkDirectionVector;
+    private Vector2 walkDirectionVector=Vector2.right;
 
     public float walkStopRate = 0.6f;    
     public WalkableDirection WalkDirection
@@ -49,6 +49,7 @@ public class Knight : MonoBehaviour
         touchingDirections = GetComponent<touchingDirections>();
 
         animator = GetComponent<Animator>();
+        damageable = GetComponent<Damagable>();
     }
     void Update()
     {
@@ -81,11 +82,15 @@ public class Knight : MonoBehaviour
             FlipDirection();
         }
 
-        if (CanMove)
+        if (!damageable.LockVelocity)
+        {
+            if (CanMove)
 
-            rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
-        else
-            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x,0,walkStopRate), rb.velocity.y);
+                rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+            else
+                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x,0,walkStopRate), rb.velocity.y);
+        }
+       
     }
 
     private void FlipDirection()
@@ -105,5 +110,23 @@ public class Knight : MonoBehaviour
         }
             
     }
-    
+
+    public void OnHit(int damage, Vector2 knockback)
+    {
+        //LockVelocity = true;
+        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+
+    }
+   public bool LockVelocity
+    {
+        get
+        {
+            return  animator.GetBool(AnimationStrings.lockVelocity);
+        }
+        set
+        {
+            animator.SetBool(AnimationStrings.lockVelocity,value);
+        }
+    }
+
 }

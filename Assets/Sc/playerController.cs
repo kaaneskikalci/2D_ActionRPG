@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-[RequireComponent(typeof(Rigidbody2D), typeof(touchingDirections))]
+[RequireComponent(typeof(Rigidbody2D), typeof(touchingDirections),typeof(Damagable))]
 public class playerController : MonoBehaviour
 {
     touchingDirections touchingDirections;
-Vector2 moveInput;
+    Damagable damageable;
 
+Vector2 moveInput;
+//Damagable damageable;
 [SerializeField]
 private bool _isMoving = false;
 
@@ -116,12 +118,19 @@ transform.localScale*=new Vector2(-1,1);
   rb = GetComponent<Rigidbody2D>();
   animator=GetComponent<Animator>();
   touchingDirections=GetComponent<touchingDirections>();
+  damageable = GetComponent<Damagable>();
+  // damageable=GetComponent<Damagable>();
+
 }
   
 
      private void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveInput.x*CurrentMoveSpeed, rb.velocity.y);
+        if (!damageable.LockVelocity)
+        {
+            rb.velocity = new Vector2(moveInput.x*CurrentMoveSpeed, rb.velocity.y);
+
+        }
 
         animator.SetFloat(AnimationStrings.yVelocity,rb.velocity.y);
 
@@ -131,7 +140,19 @@ transform.localScale*=new Vector2(-1,1);
        
     }
 
-   public void OnMove(InputAction.CallbackContext context)
+    public bool LockVelocity
+    {
+        get
+        {
+          return  animator.GetBool(AnimationStrings.lockVelocity);
+        }
+        set
+        {
+            animator.SetBool(AnimationStrings.lockVelocity,value);
+        }
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
 
     {
         moveInput = context.ReadValue<Vector2>();
@@ -201,5 +222,11 @@ public bool CanMove
 public bool IsAlive
 {
     get { return animator.GetBool(AnimationStrings.isAlive); }
+}
+
+public void OnHit(int damage, Vector2 knockback)
+{
+   // LockVelocity = true;
+    rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
 }
 }
