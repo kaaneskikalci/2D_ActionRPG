@@ -7,7 +7,12 @@ public class HealthPickup : MonoBehaviour
 {
     public int healthRestore=20;
     public Vector3 spinRotationSpeed = new Vector3(0, 180, 0);
-    
+    private AudioSource pickupSound;
+
+    private void Awake()
+    {
+        pickupSound = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,8 +21,10 @@ public class HealthPickup : MonoBehaviour
         {
             bool wasHealed =damagable.Heal(healthRestore);
             if (wasHealed)
-            
-                Destroy(gameObject);
+                if (pickupSound)
+
+                    AudioSource.PlayClipAtPoint(pickupSound.clip,gameObject.transform.position,pickupSound.volume);
+            Destroy(gameObject);
         }
     }
 
