@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 7816599571804615654}
   m_Layer: 7
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -276,6 +276,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b6ba2c02-63fe-46fb-a9c0-173b1a2b9a7e
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7b64d300-e46e-49c0-a8af-240d505ff031
+    m_ActionName: UI/Escape[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

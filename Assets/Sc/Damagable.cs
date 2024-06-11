@@ -11,6 +11,7 @@ public class Damagable : MonoBehaviour
     [SerializeField] private int _maxHealth = 100;
     private float timeSinceHit = 0;
     public float invincibilityTime = 0.25f;
+    public UnityEvent<int,int>healthChanged;
 
     public int MaxHealth
 
@@ -27,6 +28,7 @@ public class Damagable : MonoBehaviour
         set
         {
             _health = value;
+            healthChanged?.Invoke(_health,MaxHealth);
             //die
             if (_health <= 0)
             {
