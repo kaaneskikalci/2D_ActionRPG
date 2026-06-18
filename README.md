@@ -1,2 +1,2 @@
-2D RPG Game Template
+2D Action RPG Game Template
 
